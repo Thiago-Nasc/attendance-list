@@ -1,6 +1,6 @@
 import './style.css';
 import { Card } from '../../components/Card';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export function Home() {
 
@@ -8,9 +8,10 @@ export function Home() {
 
   const [personPresent, setPersonPresent] = useState('');
   const [personList, setPersonList] = useState<NewPerson>([]);
+  const [user, setUser] = useState({name: '', avatar: ''});
 
-  function handleAddStudent() {
-    let newPerson = {
+  function handleAddPerson() {
+    const newPerson = {
       nome: personPresent,
       time: new Date().toLocaleTimeString('pt-br', {
         hour: '2-digit',
@@ -20,15 +21,32 @@ export function Home() {
     };
 
     setPersonList( prevState => [...prevState, newPerson]);
+    const inputName: HTMLInputElement | null = document.querySelector('#inputName');
+    inputName!.value = '';
   };
+
+  function handleDeletePerson () {
+    console.log('helo, world!');
+  };
+
+  useEffect(() => {
+    fetch('https://api.github.com/users/Thiago-Nasc')
+    .then( response => response.json())
+    .then( data => setUser({name: data.name, avatar: data.avatar_url}))
+  }, [])
 
   return (
     <div className="Home">
-
-      <div className="areaInput">
+      <header>
         <h1>Lista de Presença</h1>
-        <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPersonPresent(e.target.value)}/>
-        <button onClick={handleAddStudent}>adicionar</button>
+        <div className="user">
+          <span>{user.name}</span>
+          <img src={user.avatar} alt="imagem de perfil do usuário" />
+        </div>
+      </header>
+      <div className="areaInput">
+        <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPersonPresent(e.target.value)} id="inputName"/>
+        <button onClick={handleAddPerson}>adicionar</button>
       </div>
       <div id="cards">
         { personList?.map( (person, i) => <Card name={person.nome} time={person.time} key={i}/>)}
