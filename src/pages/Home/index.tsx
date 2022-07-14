@@ -49,7 +49,7 @@ export function Home() {
         <button onClick={handleAddPerson}>adicionar</button>
       </div>
       <div id="cards">
-        { personList?.map( (person, i) => <Card name={person.nome} time={person.time} key={i}/>)}
+        { personList?.map( (person, i) => <Card name={person.nome} time={person.time} id={i} key={i}/>)}
       </div>
     </div>
   )
