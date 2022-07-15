@@ -55,7 +55,7 @@ export function Home() {
           });
         }}/>)}
 
-        {<DeleteList deleteList={ () => setPersonList([])} />}
+        {personList.length != 0 && <DeleteList deleteList={ () => setPersonList([])} />}
 
       </div>
     </div>
