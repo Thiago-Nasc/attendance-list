@@ -1,5 +1,6 @@
 import './style.css';
 import { Card } from '../../components/Card';
+import { DeleteList } from '../../components/DeleteList';
 import React, { useState, useEffect } from 'react';
 
 export function Home() {
@@ -25,9 +26,6 @@ export function Home() {
     inputName!.value = '';
   };
 
-  function handleDeletePerson () {
-    console.log('helo, world!');
-  };
 
   useEffect(() => {
     fetch('https://api.github.com/users/Thiago-Nasc')
@@ -45,11 +43,20 @@ export function Home() {
         </div>
       </header>
       <div className="areaInput">
-        <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPersonPresent(e.target.value)} id="inputName"/>
+        <input type="text" autoComplete="off" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPersonPresent(e.target.value)} id="inputName"/>
         <button onClick={handleAddPerson}>adicionar</button>
       </div>
       <div id="cards">
-        { personList?.map( (person, i) => <Card name={person.nome} time={person.time} id={i} key={i}/>)}
+
+        {personList.map( (person, i) => <Card name={person.nome} time={person.time} id={i} key={i} f_delete={() => {
+          const valorPerson = personList[i];
+          setPersonList((prevState) => {
+            return prevState.filter((person) => person !== valorPerson);
+          });
+        }}/>)}
+
+        {<DeleteList deleteList={ () => setPersonList([])} />}
+
       </div>
     </div>
   )
