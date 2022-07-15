@@ -8,7 +8,7 @@ header {
 }
 
 header h1 {
-    font-size: 25       px;
+    font-size: 25px;
 }
 
 .user {
@@ -46,6 +46,7 @@ img {
     border-radius: 10px;
     padding: 15px 20px;
     font-size: 16px;
+    text-transform: capitalize;
     background-color: #e6e6e6;
 }
 
@@ -59,3 +60,10 @@ img {
     color: #fff;
 }
 
+@media (max-width: 597px) {
+    header,
+    .areaInput input,
+    .areaInput button {
+        width: 80%;
+    }
+}

@@ -1,9 +1,9 @@
 import './style.css';
 
-export function Card(props: {name: string, time: string, id: number, f_delete: any }) {
+export function Card(props: {name: string, time: string, f_delete: any }) {
 
     return (
-        <div className='card' id={props.id.toString()}>
+        <div className='card'>
             <span className='nome'>{props.name}</span>
             <div className="right-side">
                 <span className='hora'>{props.time}</span>

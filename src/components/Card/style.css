@@ -12,6 +12,7 @@
 .nome {
     font-size: 15px;
     color: #fff;
+    text-transform: capitalize;
 }
 
 .hora {
@@ -30,4 +31,10 @@
     display: block;
     padding: 5px;
     cursor: pointer;
+}
+
+@media (max-width: 597px) {
+    .card {
+        width: 80%;
+    }
 }

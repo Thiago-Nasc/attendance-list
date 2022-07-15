@@ -48,7 +48,7 @@ export function Home() {
       </div>
       <div id="cards">
 
-        {personList.map( (person, i) => <Card name={person.nome} time={person.time} id={i} key={i} f_delete={() => {
+        {personList.map( (person, i) => <Card name={person.nome} time={person.time} key={i} f_delete={() => {
           const valorPerson = personList[i];
           setPersonList((prevState) => {
             return prevState.filter((person) => person !== valorPerson);
