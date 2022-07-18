@@ -12,18 +12,23 @@ export function Home() {
   const [user, setUser] = useState({name: '', avatar: ''});
 
   function handleAddPerson() {
-    const newPerson = {
-      nome: personPresent,
-      time: new Date().toLocaleTimeString('pt-br', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      })
-    };
+    if ( personPresent === '') {
+      alert('Digite um nome antes de adicionar a lista!');
+    } else {
+      const newPerson = {
+        nome: personPresent,
+        time: new Date().toLocaleTimeString('pt-br', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        })
+      };
 
-    setPersonList( prevState => [...prevState, newPerson]);
-    const inputName: HTMLInputElement | null = document.querySelector('#inputName');
-    inputName!.value = '';
+      setPersonList(prevState => [...prevState, newPerson]);
+      const inputName: HTMLInputElement | null = document.querySelector('#inputName');
+      inputName!.value = '';
+      setPersonPresent('');
+    }
   };
 
 
