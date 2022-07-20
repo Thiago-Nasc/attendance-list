@@ -1,3 +1,5 @@
+// Componente resposável pela exibição dos elementos cadastrados na lista de presença
+
 import './style.css';
 
 export function Card(props: {name: string, time: string, f_delete: any }) {

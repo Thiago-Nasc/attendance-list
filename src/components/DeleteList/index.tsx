@@ -1,6 +1,8 @@
+// Componente responsável por excluir todas os items cadastradas na lista de presença
+
 import './style.css';
 
-export function DeleteList(props: {deleteList: any}) {
+export function DeleteList(props: {deleteList: VoidFunction}) {
 
     return (
         <div className="container">
