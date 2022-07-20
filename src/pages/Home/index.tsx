@@ -1,7 +1,7 @@
 import './style.css';
 import { Card } from '../../components/Card';
 import { DeleteList } from '../../components/DeleteList';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, KeyboardEvent } from 'react';
 
 export function Home() {
 
@@ -48,7 +48,12 @@ export function Home() {
         </div>
       </header>
       <div className="areaInput">
-        <input type="text" autoComplete="off" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPersonPresent(e.target.value)} id="inputName"/>
+        <input
+        type="text"
+        autoComplete="off"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPersonPresent(e.target.value)}
+        onKeyUp={ (e: KeyboardEvent) => e.which == 13 ? handleAddPerson() : null}
+        id="inputName"/>
         <button onClick={handleAddPerson}>adicionar</button>
       </div>
       <div id="cards">
